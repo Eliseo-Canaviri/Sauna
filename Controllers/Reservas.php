@@ -124,10 +124,12 @@ class Reservas extends Controller
       if ($id == "") {
         $data = $this->model->registrarReserva($fecha, $hora_inicio, $hora_fin, $id_usuario, $id_sauna);
         if ($data == "ok") {
+          
           $data = $this->model->getMaxIDReservar();
           foreach ($data as $row) {
             $id_MaxReserva = $row;
           }
+          
           $msg = array('msg' => 'Registro con exito ', 'icono' => 'success', 'id_reserva' => $id_MaxReserva);
         } else if ($data == "existe") {
 
@@ -243,6 +245,7 @@ class Reservas extends Controller
     $this->views->getView($this, "inactivos", $data);
   }
 
+
   function generarPdf($id_MaxReserva)
   {
     $dataint = $this->model->getInstitucion();
@@ -283,12 +286,9 @@ if ($salida > $entrada) {
 if (is_numeric($totalPagar)) {
     $totalPagar = number_format($totalPagar, 2); // Formato con dos decimales
 }
-  
+    //$id_reser=$this->model->id_reser($id_MaxReserva);
    //Fin calcular precio
    $datatotalpre = $this->model->RegitrarTotalPrecio($id_MaxReserva,$totalPagar);
-
-    
-
 
     // Establecer el título
     $pdf->SetFont('Arial', 'B', 13);
@@ -309,7 +309,7 @@ if (is_numeric($totalPagar)) {
 
     $pdf->Cell(0, 10, 'utf8_decode'("Hora Ing. y Sal : " . $datares['hora_inicio'] . " a " . $datares['hora_fin']), 0, 1);
  // Imprimir el total en el PDF
- $pdf->Cell(0, 10, 'Total a Pagar: Bs ' . $totalPagar, 0, 1);
+ $pdf->Cell(0, 10, 'Total a Pagar: ' . $totalPagar.' Bs.', 0, 1);
   
     $pdf->Cell(0, 10, '-----------------------------------------------', 0, 1, 'C');
     $pdf->Ln(2); // Salto de línea
@@ -321,7 +321,7 @@ if (is_numeric($totalPagar)) {
  
   
     // $pdf->Cell(0, 10, 'Gracias por su preferencia!', 0, 1, 'C');
-    $pdf->Cell(0, 10, utf8_decode($dataint['mensaje']), 0, 1, 'C');
+    $pdf->Cell(0, 10, 'utf8_decode'($dataint['mensaje']), 0, 1, 'C');
     // Opcional: Agregar un código QR o un código de barras (si es necesario)
     // Puedes usar una librería externa para generar códigos QR o de barras
 

@@ -190,27 +190,40 @@ WHERE  re.id_reserva=$id";
         $sql = "SELECT * FROM institucion";
         $data = $this->select($sql);
         return $data;
+    } public function id_total($id_reserva)
+    {
+        $sql = "SELECT * FROM preciototal WHERE id_reserva=$id_reserva";
+        $data = $this->select($sql);
+        return $data;
     }
     public function RegitrarTotalPrecio(int $id_reserva, string $total_pre)
     {
         $this->total_pre=$total_pre;
-        $this->id_reserva=$id_reserva;
-      
+        $this->id_reserva=$id_reserva;                
+  //para verificar si existe usuario
+  $verificar="SELECT *FROM preciototal WHERE id_reserva=$id_reserva";
+  $existe=$this->select($verificar);
+  if (empty($existe)) {
     
-      
-        $sql="INSERT INTO preciototal (total_pre,id_reserva)VALUES(?,?)";///no funciona
-        $datos=array($this->total_pre,$this->id_reserva);
-        $data=$this->save($sql,$datos);
-    
-        if ($data==1) {
-            $res="ok";
-    
-        }else{
-            $res="error";
-        }
-       return $res;
-    
-    
+    $sql="INSERT INTO preciototal (total_pre,id_reserva)VALUES(?,?)";///no funciona
+    $datos=array($this->total_pre,$this->id_reserva);
+    $data=$this->save($sql,$datos);
+
+    if ($data==1) {
+        $res="ok";
+
+    }else{
+        $res="error";
+    } 
+  }else {
+    $sql = "UPDATE preciototal SET total_pre = ? WHERE id_reserva = ?";
+    $datos = array($this->total_pre, $id_reserva); // Use $id_reserva directly
+    $data = $this->save($sql, $datos);
+    return $data;
+  }
+
+ return $res;
+  
     }
    
 

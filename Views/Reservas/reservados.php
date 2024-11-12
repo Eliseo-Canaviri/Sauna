@@ -58,7 +58,8 @@
                     <?php echo $estado; ?>
                 </td>
                 <td>
-                    <button class="btn btn-primary" type="button" onclick="btnReingresarReserva(<?php echo $row['id_reserva'] ?>);"><i class="ti ti-printer"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="btnReingresarReserva(<?php echo $row['id_reserva'] ?>);"><i class="ti ti-printer"></i></button>
+      
                 </td>
             </tr>
         <?php } ?>
