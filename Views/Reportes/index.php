@@ -1,7 +1,9 @@
 <?php include "Views/Templates/header.php"; ?>
-<ol class="breadcrumb mb-3">
-    <li class="breadcrumb-item active ">Reportes ☻</li>
-</ol>
+<div class="bg mb-3">
+  <div>
+    <h2 class="mt-3"> Reportes </h2>
+  </div>
+</div>
 
 <div class="container mt-4 mb-4">
     <form method="POST" id="frmFiltrar">

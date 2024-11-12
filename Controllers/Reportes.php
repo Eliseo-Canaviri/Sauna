@@ -174,11 +174,11 @@ class Reportes extends Controller
             $pdf->SetFillColor(40, 116, 166); //Color de fondo color azul
             $pdf->SetTextColor(255, 255, 255); //color de texto blanco
             $pdf->Cell(10, 5, 'ID', 0, 0, 'L', true);
-            $pdf->Cell(25, 5, 'Usuario', 0, 0, 'L', true);
-            $pdf->Cell(35, 5, 'Sauna', 0, 0, 'L', true);
+            $pdf->Cell(50, 5, 'Nombres', 0, 0, 'L', true);
+            $pdf->Cell(30, 5, 'Sauna', 0, 0, 'L', true);
             $pdf->Cell(25, 5, 'Hora Inicio', 0, 0, 'L', true);
-            $pdf->Cell(40, 5, 'Hora Fin', 0, 0, 'L', true);
-            $pdf->Cell(30, 5, 'fecha (Bs)', 0, 0, 'L', true);
+            $pdf->Cell(20, 5, 'Hora Fin', 0, 0, 'L', true);
+            $pdf->Cell(30, 5, 'Fecha Registro', 0, 0, 'L', true);
             $pdf->Cell(35, 5, 'Precio (Bs.)', 0, 1, 'L', true);
             $pdf->SetFont('Arial', '', 10);
             $pdf->SetTextColor(0, 0, 0);
@@ -186,10 +186,10 @@ class Reportes extends Controller
                 $pdf->SetFillColor(255, 255, 255); // Color de fondo
                 $pdf->SetTextColor(0, 0, 0); // Color de texto
                 $pdf->Cell(10, 5, $row['id_reserva'], 1, 0, 'L', 1);
-                $pdf->Cell(25, 5, 'utf8_decode'($row['nombres']), 1, 0, 'L', 1);
-                $pdf->Cell(35, 5, 'utf8_decode'($row['tipo']), 1, 0, 'L', 1);
+                $pdf->Cell(50, 5, 'utf8_decode'($row['nombres'].''.$row['apellidos']), 1, 0, 'L', 1);
+                $pdf->Cell(30, 5, 'utf8_decode'($row['tipo']), 1, 0, 'L', 1);
                 $pdf->Cell(25, 5, 'utf8_decode'($row['hora_inicio']), 1, 0, 'L', 1);
-                $pdf->Cell(40, 5, $row['hora_fin'], 1, 0, 'L', 1);
+                $pdf->Cell(20, 5, $row['hora_fin'], 1, 0, 'L', 1);
                 $pdf->Cell(30, 5, $row['fecha'], 1, 0, 'L', 1);
                 $pdf->Cell(35, 5, 'utf8_decode'($row['total_pre']), 1, 1, 'L', 1);
             }

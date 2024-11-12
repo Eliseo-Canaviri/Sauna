@@ -14,6 +14,7 @@ class ReportesModel extends Query
 sa.tipo,
 sa.precio,
 us.nombres,
+us.apellidos,
 pr.total_pre
 FROM reservas AS re
 INNER JOIN sauna AS sa  

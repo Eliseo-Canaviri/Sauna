@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2024 a las 01:15:48
+-- Tiempo de generación: 12-11-2024 a las 01:47:21
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -54,15 +54,6 @@ CREATE TABLE `preciototal` (
   `id_reserva` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `preciototal`
---
-
-INSERT INTO `preciototal` (`id_preciototal`, `total_pre`, `id_reserva`) VALUES
-(1, 20, 32),
-(2, 15, 33),
-(3, 50, 34);
-
 -- --------------------------------------------------------
 
 --
@@ -78,15 +69,6 @@ CREATE TABLE `reservas` (
   `id_sauna` int(11) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `reservas`
---
-
-INSERT INTO `reservas` (`id_reserva`, `fecha`, `hora_inicio`, `hora_fin`, `id_usuario`, `id_sauna`, `estado`) VALUES
-(32, '2024-11-11', '19:57:00', '20:57:00', 1, 1, 1),
-(33, '2024-11-11', '20:00:00', '21:30:00', 1, 2, 1),
-(34, '2024-11-11', '20:00:00', '22:00:00', 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -138,10 +120,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `ci`, `nombres`, `apellidos`, `email`, `telefono`, `usuario`, `clave`, `fecha`, `estado`) VALUES
-(1, 8581330, 'Eliseo', 'Canaviri Jachacata ', 'eliseocanaviri09@gmail.com', 72737903, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2024-10-13 11:37:12', 1),
-(28, 5444, 'Aná', 'Lopez', 'ana@mailinator.com', 8885665, 'ana', '24d4b96f58da6d4a8512313bbd02a28ebf0ca95dec6e4c86ef78ce7f01e788ac', '2024-10-13 22:40:50', 1),
-(29, 778787, 'Dayver', 'Vale', 'dayver@gmail.com', 78787878, 'dayver', 'e9f42ad79dc1ba2a3c3c372a9e47d3cb48c7e76acaafafa42ec0c8b2e6e38197', '2024-10-27 19:00:05', 1),
-(30, 787878, 'Taniá', 'Montaño', 'tania@gmail.con', 787878, 'tania', '37755b1afe16a4973d4d2208c4a7dea45e2e5772015dc3d34e04eeed77f58591', '2024-10-27 19:46:26', 1);
+(1, 85544554, 'Eliseo', 'Canaviri Jachacata', 'eliseocanaviri44@gmail.com', 72737903, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2024-11-12 00:45:19', 1);
 
 --
 -- Índices para tablas volcadas
@@ -193,13 +172,13 @@ ALTER TABLE `institucion`
 -- AUTO_INCREMENT de la tabla `preciototal`
 --
 ALTER TABLE `preciototal`
-  MODIFY `id_preciototal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_preciototal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `sauna`
@@ -211,7 +190,7 @@ ALTER TABLE `sauna`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

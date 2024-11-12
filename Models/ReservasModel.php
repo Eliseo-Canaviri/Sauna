@@ -27,6 +27,7 @@ WHERE re.id_usuario=$id
     {
         $sql = "SELECT re.* ,
 us.nombres,
+us.apellidos,
 sa.tipo
 FROM reservas AS re
 INNER JOIN usuarios AS us

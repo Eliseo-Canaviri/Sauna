@@ -103,7 +103,13 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     columns: [
       { data: "id_reserva" },
-      { data: "nombres" },
+      {
+        data: null,
+        render: function (data, type, row) {
+          return row.nombres + " " + row.apellidos;
+        },
+      },
+
       { data: "tipo" },
       { data: "fecha" },
       { data: "hora_inicio" },

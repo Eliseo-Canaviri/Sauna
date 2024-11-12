@@ -29,10 +29,10 @@ class Reservas extends Controller
         if ($data[$i]['estado'] == 1) {
           $data[$i]['estado'] = '<spam class="badge bg-success">Activo</spam';
           $data[$i]['acciones'] = '<div>
-        <button class ="btn btn-primary" type="button"onclick="btnEditarReserva(' . $data[$i]['id_reserva'] . ');"><i class="ti ti-edit"></i></button>
-        <button class ="btn btn-danger" type="button"onclick="btnEliminarReserva(' . $data[$i]['id_reserva'] . ');" ><i class="ti ti-trash"></i></button>
+        <button class ="btn btn-primary mb-1" type="button"onclick="btnEditarReserva(' . $data[$i]['id_reserva'] . ');"><i class="ti ti-edit"></i></button>
+        <button class ="btn btn-danger mb-1" type="button"onclick="btnEliminarReserva(' . $data[$i]['id_reserva'] . ');" ><i class="ti ti-trash"></i></button>
       
-      <a class ="btn btn-warning "href="' . base_url . "Reservas/generarPdf/" . $data[$i]['id_reserva'] . '" target="_blank"><i class="ti ti-file-text"></i></a>
+      <a class ="btn btn-warning mb-1 "href="' . base_url . "Reservas/generarPdf/" . $data[$i]['id_reserva'] . '" target="_blank"><i class="ti ti-file-text"></i></a>
       <div/>';
         } else {
           $data[$i]['estado'] = '<spam class="badge bg-danger">Inactivo</spam';

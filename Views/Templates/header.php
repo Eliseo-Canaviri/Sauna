@@ -180,3 +180,7 @@
           <div class="col-lg-12 d-flex ">
             <div class="card w-100 ">
               <div class="card-body">
+              <?php
+// Establecer la zona horaria de Bolivia
+date_default_timezone_set('America/La_Paz');
+?>
