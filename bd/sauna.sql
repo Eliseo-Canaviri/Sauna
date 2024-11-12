@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2024 a las 01:18:05
+-- Tiempo de generación: 12-11-2024 a las 01:15:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,7 +40,28 @@ CREATE TABLE `institucion` (
 --
 
 INSERT INTO `institucion` (`id`, `nombre`, `telefono`, `direccion`, `mensaje`) VALUES
-(2, 'Sauna Eden', '7455478', 'Oruro-2024', 'Gracias por su preferencia!');
+(2, 'Sauna Eden ', '7455478', 'Oruro-2024', 'Gracias por su preferencia!');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `preciototal`
+--
+
+CREATE TABLE `preciototal` (
+  `id_preciototal` int(11) NOT NULL,
+  `total_pre` double NOT NULL,
+  `id_reserva` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `preciototal`
+--
+
+INSERT INTO `preciototal` (`id_preciototal`, `total_pre`, `id_reserva`) VALUES
+(1, 20, 32),
+(2, 15, 33),
+(3, 50, 34);
 
 -- --------------------------------------------------------
 
@@ -51,8 +72,8 @@ INSERT INTO `institucion` (`id`, `nombre`, `telefono`, `direccion`, `mensaje`) V
 CREATE TABLE `reservas` (
   `id_reserva` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora_inicio` varchar(100) NOT NULL,
-  `hora_fin` varchar(100) NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fin` time NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_sauna` int(11) NOT NULL,
   `estado` int(11) NOT NULL DEFAULT 1
@@ -63,12 +84,9 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id_reserva`, `fecha`, `hora_inicio`, `hora_fin`, `id_usuario`, `id_sauna`, `estado`) VALUES
-(4, '2024-11-07', '05:00', '06:00', 1, 3, 1),
-(5, '2024-11-03', '08:00', '09:00', 30, 5, 1),
-(6, '2024-11-03', '08:00', '09:00', 30, 1, 1),
-(7, '2024-11-07', '05:00', '06:00', 1, 1, 1),
-(9, '2024-11-07', '01:00', '02:00', 1, 3, 0),
-(10, '2024-11-07', '10:00', '11:00', 30, 2, 1);
+(32, '2024-11-11', '19:57:00', '20:57:00', 1, 1, 1),
+(33, '2024-11-11', '20:00:00', '21:30:00', 1, 2, 1),
+(34, '2024-11-11', '20:00:00', '22:00:00', 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -136,6 +154,12 @@ ALTER TABLE `institucion`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `preciototal`
+--
+ALTER TABLE `preciototal`
+  ADD PRIMARY KEY (`id_preciototal`);
+
+--
 -- Indices de la tabla `reservas`
 --
 ALTER TABLE `reservas`
@@ -166,10 +190,16 @@ ALTER TABLE `institucion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `preciototal`
+--
+ALTER TABLE `preciototal`
+  MODIFY `id_preciototal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `sauna`

@@ -23,12 +23,12 @@
 
 
 <!-- table table-dark // para volver la tabla oscuro-->
-<table class="table table-hover table-bordered" id="tblReservas" style="width: 100%;">
+<table class="table table-light table-hover table-bordered" id="tblReservas" style="width: 100%;">
   <thead class="table-dark">
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Id Usuario</th>
-      <th scope="col">Id Sauna</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Sauna</th>
       <th scope="col">Fecha Actual</th>
       <th scope="col">Hora Inicio</th>
       <th scope="col">Hora Fin</th>
@@ -41,7 +41,14 @@
   </thead>
 
 </table>
+<?php
+// Establecer la zona horaria para Bolivia
+date_default_timezone_set('America/La_Paz'); // Cambia esto a la zona horaria de Bolivia
 
+// Obtener la hora actual en formato HH:MM
+$current_time = date('H:i');
+$hora_fin = date('H:i', strtotime($current_time) + 3600); // 3600 segundos = 1 hora
+?>
 <!-- Modal -->
 <div class="modal fade" id="nuevo_reserva" data-bs-backdrop="static" tabindex="-1" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -88,21 +95,21 @@
 
             <div class="form-group">
               <label for="fecha" class="form-label">Fecha</label>
-              <input id="fecha" class="form-control" type="text" name="fecha" value="<?php echo date('Y-m-d'); ?>" readonly>
+              <input id="fecha" class="form-control" type="date" name="fecha" value="<?php echo date('Y-m-d'); ?>">
             </div>
           </div>
           <div class="row " id="claves">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hora_inicio" class="form-label">Hora Inicio</label>
-                <input id="hora_inicio" class="form-control" type="time" name="hora_inicio" placeholder="Clave" value="08:00">
+                <input id="hora_inicio" class="form-control" type="time" name="hora_inicio" placeholder="Clave" value="<?php echo $current_time; ?>">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hora_fin" class="form-label">Hora Fin</label>
                 <input id="hora_fin" class="form-control" type="time" name="hora_fin"
-                  placeholder="Confirmar Clave" value="09:00">
+                  placeholder="Confirmar Clave" value="<?php echo $hora_fin; ?>" >
               </div>
             </div>
           </div>

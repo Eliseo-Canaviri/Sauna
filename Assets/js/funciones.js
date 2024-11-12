@@ -686,6 +686,7 @@ function registrarReserva(e) {
         $("#nuevo_reserva").modal("hide"); //para que se oculte el domal de usuario
         alertas(res.msg, res.icono);
         if (res.icono == "success") {
+                
           setTimeout(() => {
             window.open(base_url + "Reservas/generarPdf/" + res.id_reserva);
           }, 3000);
@@ -697,7 +698,33 @@ function registrarReserva(e) {
     };
   }
 }
+function btnEditarReserva2(id) {
+  document.getElementById("title").innerHTML = "Actulizar Reserva";
+  document.getElementById("btnAccion").innerHTML = "Modificar";
+  const url = base_url + "Reservas/editar2/" + id; //estamos enviando ala controlador
+  console.log(id);
+  const http = new XMLHttpRequest();
+  http.open("GET", url, true);
+  http.send();
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      const res = JSON.parse(this.responseText);
 
+      document.getElementById("id").value = res.id_reserva;
+      document.getElementById("id_user").value = res.id_usuario;
+      document.getElementById("select_usuario").value = res.nombres;
+      document.getElementById("id_sau").value = res.id_sauna;
+      document.getElementById("select_sauna").value = res.tipo;
+      document.getElementById("hora_inicio").value = res.hora_inicio;
+      document.getElementById("hora_fin").value = res.hora_fin;
+      
+
+      //document.getElementById("claves").classList.add("d-none"); //esto es para esconder campos de claves
+      $("#nuevo_reserva").modal("show");
+    }
+  };
+}
 function btnEditarReserva(id) {
   document.getElementById("title").innerHTML = "Actulizar Reserva";
   document.getElementById("btnAccion").innerHTML = "Modificar";
@@ -716,6 +743,8 @@ function btnEditarReserva(id) {
       document.getElementById("select_usuario").value = res.nombres;
       document.getElementById("id_sau").value = res.id_sauna;
       document.getElementById("select_sauna").value = res.tipo;
+      document.getElementById("hora_inicio").value = res.hora_inicio;
+      document.getElementById("hora_fin").value = res.hora_fin;
       
 
       //document.getElementById("claves").classList.add("d-none"); //esto es para esconder campos de claves
@@ -940,15 +969,150 @@ function btnReingresarSauna(id) {
 
 //Fin Sauna
 
+function btnReportesFiltrar(e) {
+  e.preventDefault();
+
+  const fecha_inicio = document.getElementById("fecha_inicio");
+  const fecha_fin = document.getElementById("fecha_fin");
+  
+  console.log(fecha_inicio.value);
+  console.log(fecha_fin.value);
+  document.getElementById("fecha_iniciopdf").value = fecha_inicio.value;
+  document.getElementById("fecha_finpdf").value = fecha_fin.value;
+      
+  if (
+    fecha_inicio.value == "" ||
+    fecha_fin.value == "" 
+  ) {
+    alertas("Todos los Campos son obligatorios ☺", "warning");
+  } else {
+    const url = base_url + "Reportes/FiltrarFecha"; //estamos enviando ala controlador
+    const frm = document.getElementById("frmFiltrar");
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(new FormData(frm));
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+
+        const res = JSON.parse(this.responseText);
+       
+
+        // Selecciona el tbody de la tabla
+        const tbody = document.querySelector("#tblFechaFiltrar tbody");
+        
+        // Limpia cualquier dato previo en el tbody
+        tbody.innerHTML = '';
+        
+        // Recorre cada elemento de la respuesta JSON y crea filas
+        res.forEach(item => {
+            const row = document.createElement("tr");
+        
+            // Crea celdas para cada columna y asigna el contenido
+            row.innerHTML = `
+                <td>${item.id_reserva}</td>
+                <td>${item.nombres}</td>
+                <td>${item.tipo}</td>
+                <td>${item.fecha}</td>
+                <td>${item.hora_inicio}</td>
+                <td>${item.hora_fin}</td>
+          
+                 <td>
+        <a class="btn btn-warning" href="${base_url}Reservas/generarPdf/${item.id_reserva}" target="_blank">
+            <i class="ti ti-file-text"></i>
+        </a>
+    </td>
+
+            `;
+        
+            // Agrega la fila al tbody
+            tbody.appendChild(row);
+           
+      /**   setTimeout(() => {
+          window.open(base_url + "Reportes/GenerarPdf");
+        }, 3000);
+*/
+
+        });
+        
+
+      }
+    };
+  }
+}
+
+function btnGenerarReporte() {
+ 
+
+  const fecha_inicio = document.getElementById("fecha_inicio");
+  const fecha_fin = document.getElementById("fecha_fin");
+ 
+  if (
+    fecha_inicio.value == "" ||
+    fecha_fin.value == "" 
+  ) {
+    alertas("Todos los Campos son obligatorios ☺", "warning");
+  } else {
+    const url = base_url + "Reportes/GenerarPdf"; //estamos enviando ala controlador
+    const frm = document.getElementById("frmFiltrar");
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(new FormData(frm));
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+        const res = JSON.parse(this.responseText);
+      
 
 
 
 
+        }
+
+
+        
+
+    };
+  }
+}
 
 
 
+function alertaHoras() {
+  console.log("alertas de 10 Minutos");
+  const url = base_url + "Reportes/alertaHoras"; // Asegúrate de que base_url esté definido
+  const http = new XMLHttpRequest();
+  http.open("GET", url, true);
+  http.send();
+  http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          const reservas = JSON.parse(this.responseText);
+          mostrarReservas(reservas);
+      }
+  };
+}
+
+function mostrarReservas(reservas) {
+  const reservasList = document.getElementById('reservas-list');
+  reservasList.innerHTML = ''; // Limpiar contenido previo
+
+  reservas.forEach(reserva => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <span>${reserva.nombres}</span> <!-- Aquí deberías mostrar el nombre del usuario -->
+        <span>${reserva.tipo}</span> <!-- Aquí deberías mostrar el tipo -->
+        <span>${reserva.hora_inicio} - ${reserva.hora_fin}</span>
+        <button class="btn btn-primary mb-2 d-flex  " type="button" onclick="btnReingresarReserva(${reserva.id_reserva});">
+            <i class="ti ti-printer"></i>
+        </button>
+    `;
+    reservasList.appendChild(div);
+});
+}
 
 
+alertaHoras();
 
 
 

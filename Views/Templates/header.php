@@ -23,6 +23,7 @@
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
+
         <div class="brand-logo d-flex align-items-center justify-content-between">
           <a href="<?php echo base_url ?>Administracion/home" class="text-nowrap logo-img">
             <img src="<?php echo base_url; ?>Assets/img/dark-logo.png" width="180" alt="" />
@@ -33,6 +34,7 @@
         </div>
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+
           <ul id="sidebarnav">
 
             <li class="sidebar-item">
@@ -74,7 +76,14 @@
                   <span class="hide-menu">Saunas</span>
                 </a>
               </li>
-          
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="<?php echo base_url ?>Reportes" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-report"></i>
+                  </span>
+                  <span class="hide-menu">Reportes</span>
+                </a>
+              </li>
             <?php endif; ?>
 
 
@@ -112,9 +121,37 @@
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              
+
+
+            <!-- Nav Item - Alerts -->
+<?php if ($_SESSION['id_usuario'] == 1): ?>
+    <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alert" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="ti ti-bell-minus fs-5"></i>
+            <!-- Counter - Alerts -->
+            <span id="TotalAlerta" class="badge bg-danger badge-counter"></span>
+        </a>
+
+        <!-- Alerts -->
+        <ul class="dropdown-menu dropdown-menu-end shadow animated--grow-in" aria-labelledby="alert">
+            <h5 class="dropdown-header">Alertas</h5>
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div id="reservas-container">
+                        <div id="reservas-list"></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </li>
+<?php endif; ?>
+<!-- fin de alertas -->
+
               <span class="mr-2 d-none d-lg-inline text-gray-600 form-label "> ¡Hola!
                 <?php echo $_SESSION['nombres'] ?>
               </span>
+
               <li class="nav-item dropdown">
 
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"

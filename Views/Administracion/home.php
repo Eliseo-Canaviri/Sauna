@@ -66,7 +66,15 @@
 
 
 </div>
+<?php
+// Establecer la zona horaria para Bolivia
+date_default_timezone_set('America/La_Paz'); // Cambia esto a la zona horaria de Bolivia
 
+// Obtener la hora actual en formato HH:MM
+$current_time = date('H:i');
+// Sumar una hora a la hora actual
+$hora_fin = date('H:i', strtotime($current_time) + 3600); // 3600 segundos = 1 hora
+?>
 
 
 <!-- Modal  Reservas -->
@@ -98,34 +106,41 @@
               </div>
             </div>
 
-
-
+            <!-- 
+              <input id="fecha" class="form-control" type="text" name="fecha" value="<?php echo date('Y-m-d'); ?>" readonly>
+                 -->
 
             <div class="col-md-6">
               <div class="form-group">
                 <label for="fecha" class="form-label">Fecha</label>
-                <input id="fecha" class="form-control" type="text" name="fecha" value="<?php echo date('Y-m-d'); ?>" readonly>
+                <input id="fecha" class="form-control" type="date" name="fecha" value="<?php echo date('Y-m-d'); ?>">
               </div>
             </div>
           </div>
-          <div class="form-group mb-1" >
-            <label for="idsauna" class="form-label">Id Sauna</label>
-            <input id="idsauna" class="form-control" type="text" name="idsauna" placeholder="id sauna">
-          </div>
+
+
+          <!-- Sacando id  -->
+       <div class="form-group mb-1" >
+        <!-- 
+          <label for="idsauna" class="form-label">Id Sauna</label>
+        -->
+            <input id="idsauna" class="form-control" type="hidden" name="idsauna" placeholder="id sauna">
+          </div> 
+          
  
 
           <div class="row " id="claves">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hora_inicio" class="form-label">Hora Inicio</label>
-                <input id="hora_inicio" class="form-control" type="time" name="hora_inicio" placeholder="Clave" value="08:00">
+                <input id="hora_inicio" class="form-control" type="time" name="hora_inicio" placeholder="Clave" value="<?php echo $current_time; ?>">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="hora_fin" class="form-label">Hora Fin</label>
                 <input id="hora_fin" class="form-control" type="time" name="hora_fin"
-                  placeholder="Confirmar Clave" value="09:00">
+                  placeholder="Confirmar Clave" value="<?php echo $hora_fin; ?>">
               </div>
             </div>
           </div>
@@ -160,8 +175,10 @@
         <form method="POST" id="frmReservaHoras">
 
           <div class="form-group mb-1">
-            <label for="idsaunaHoras" class="form-label">Id Sauna</label>
-            <input id="idsaunaHoras" class="form-control" type="text" name="idsaunaHoras" placeholder="id sauna">
+            <!-- 
+              <label for="idsaunaHoras" class="form-label">Id Sauna</label>
+           -->
+            <input id="idsaunaHoras" class="form-control" type="hidden" name="idsaunaHoras" placeholder="id sauna">
           </div>
           <table class="table table-light">
             <thead class="thead-light">
