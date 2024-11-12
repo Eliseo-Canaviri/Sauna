@@ -7,7 +7,7 @@
 <?php if ($_SESSION['id_usuario'] == 1) { ?> <!-- Assuming 'user_role' is the key you're checking -->
 
   <button class="btn btn-primary mb-3" type="button" onclick="frmReserva();">Nuevo <i class="fa fa-user-plus"></i></button>
-  <a class="btn btn-warning mb-3" type="button" href="<?php echo base_url; ?>Reservas/reservados2">Reservados <i class="fa fa-user-plus"></i></a>
+  <a class="btn btn-warning mb-3" type="button" href="<?php echo base_url; ?>Reservas/reservados2">Reservas <i class="fa fa-user-plus"></i></a>
   <a class="btn btn-danger mb-3" type="button" href="<?php echo base_url; ?>Reservas/inactivos">Inactivos <i class="fa fa-user-plus"></i></a>
 
 <?php } ?> <!-- Make sure to close the PHP tag correctly -->
