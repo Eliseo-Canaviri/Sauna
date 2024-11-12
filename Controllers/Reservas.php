@@ -303,11 +303,11 @@ if (is_numeric($totalPagar)) {
     $pdf->Cell(0, 10, '-----------------------------------------------', 0, 1, 'C');
     // Añadir detalles con bordes
     date_default_timezone_set('America/La_Paz'); // Establecer la zona horaria de Bolivia
-    $pdf->Cell(0, 10, 'Fecha: ' . date('d/m/Y H:i:s'), 0, 1);
-    $pdf->Cell(0, 10, 'utf8_decode'("Cliente : " . $datares['nombres']), 0, 1);
+    $pdf->Cell(0, 5, 'Fecha: ' . date('d/m/Y H:i:s'), 0, 1);
+    $pdf->Cell(0, 5, 'utf8_decode'("Cliente : " . $datares['nombres']), 0, 1);
     $pdf->Cell(0, 5, 'utf8_decode'("Sauna : " . $datares['tipo']), 0, 1);
-
-    $pdf->Cell(0, 10, 'utf8_decode'("Hora Ing. y Sal : " . $datares['hora_inicio'] . " a " . $datares['hora_fin']), 0, 1);
+    $pdf->Cell(0, 5, 'utf8_decode'("Fecha Rva : " . $datares['fecha']), 0, 1);
+    $pdf->Cell(0, 5, 'utf8_decode'("Hora Ing. y Sal : " . $datares['hora_inicio'] . " a " . $datares['hora_fin']), 0, 1);
  // Imprimir el total en el PDF
  $pdf->Cell(0, 10, 'Total a Pagar: ' . $totalPagar.' Bs.', 0, 1);
   

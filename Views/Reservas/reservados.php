@@ -15,7 +15,7 @@
             <th scope="col">Id</th>
             <th scope="col">Nombres</th>
             <th scope="col">Sauna</th>
-            <th scope="col">Fecha Actual</th>
+            <th scope="col">Fecha </th>
             <th scope="col">Hora Inicio</th>
             <th scope="col">Hora Fin</th>
             <th scope="col">Estado</th>
