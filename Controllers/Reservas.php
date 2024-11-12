@@ -253,7 +253,7 @@ class Reservas extends Controller
     require('./Libraries/fpdf/fpdf.php');
 
     // Configuración del tamaño del ticket (80mm de ancho y 200mm de alto)
-    $pdf = new FPDF('P', 'mm', array(80, 200)); // Cambia las dimensiones según el tamaño del ticket
+    $pdf = new FPDF('P', 'mm', array(85, 200)); // Cambia las dimensiones según el tamaño del ticket
     $pdf->AddPage();
 
 
@@ -304,7 +304,7 @@ if (is_numeric($totalPagar)) {
     // Añadir detalles con bordes
     date_default_timezone_set('America/La_Paz'); // Establecer la zona horaria de Bolivia
     $pdf->Cell(0, 5, 'Fecha: ' . date('d/m/Y H:i:s'), 0, 1);
-    $pdf->Cell(0, 5, 'utf8_decode'("Cliente : " . $datares['nombres']), 0, 1);
+    $pdf->Cell(0, 5, 'utf8_decode'("Cliente : " . $datares['nombres']." ".$datares['apellidos']), 0, 1);
     $pdf->Cell(0, 5, 'utf8_decode'("Sauna : " . $datares['tipo']), 0, 1);
     $pdf->Cell(0, 5, 'utf8_decode'("Fecha Rva : " . $datares['fecha']), 0, 1);
     $pdf->Cell(0, 5, 'utf8_decode'("Hora Ing. y Sal : " . $datares['hora_inicio'] . " a " . $datares['hora_fin']), 0, 1);

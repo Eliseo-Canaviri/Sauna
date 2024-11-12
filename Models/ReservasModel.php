@@ -147,6 +147,7 @@ WHERE  re.id_reserva=$id AND re.estado=$estado";
     {
         $sql = "SELECT re.* ,
 us.nombres,
+us.apellidos,
 sa.tipo,
 sa.precio
 FROM reservas AS re
